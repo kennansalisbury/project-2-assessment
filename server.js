@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const methodOverride = require('method-override');
 const db = require('./models')
@@ -8,8 +9,6 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('static'));
 app.use(methodOverride('_method'));
-
-// WRITE YOUR ROUTES HERE /////////////////////
 
 //GET '/' - display
 app.get('/', (req, res) => {
@@ -24,7 +23,6 @@ app.get('/', (req, res) => {
         res.send('ERROR')
     })
 })
-
 
 //POST '/' - add widget
 app.post('/', (req, res) => {
@@ -58,6 +56,4 @@ app.delete('/', (req, res) => {
     })
 })
 
-// YOUR ROUTES ABOVE THIS COMMENT /////////////
-
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
